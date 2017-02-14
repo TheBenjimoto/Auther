@@ -50,6 +50,17 @@ app.post('/login', function (req, res, next) {
   .catch(next);
 });
 
+app.post('/signup', function(req, res, next) {
+  console.log('Hitting signup router')
+  User.findOrCreate({
+    where: req.body
+  })
+  .then(function(user) {
+    res.send(user);
+  })
+  .catch(next);
+})
+
 app.use('/api', require('../api/api.router'));
 
 

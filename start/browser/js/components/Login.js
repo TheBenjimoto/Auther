@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
-import { currentUser } from '../redux/users';
+import { currentUser } from '../redux/authentication';
 
 /* -----------------    COMPONENT     ------------------ */
 

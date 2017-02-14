@@ -6,7 +6,7 @@ const INITIALIZE = 'INITIALIZE_USERS';
 const CREATE     = 'CREATE_USER';
 export const REMOVE = 'REMOVE_USER';
 const UPDATE     = 'UPDATE_USER';
-export const SET_CURRENT_USER = 'SET_CURRENT_USER';
+const SET_CURRENT_USER = 'SET_CURRENT_USER';
 
 
 /* ------------   ACTION CREATORS     ------------------ */
@@ -36,9 +36,6 @@ export default function reducer (users = [], action) {
       return users.map(user => (
         action.user.id === user.id ? action.user : user
       ));
-
-    case SET_CURRENT_USER:
-      return users.filter(userFromArray => userFromArray.id === action.user.id)
 
     default:
       return users;
@@ -71,10 +68,3 @@ export const updateUser = (id, user) => dispatch => {
        .then(res => dispatch(update(res.data)))
        .catch(err => console.error(`Updating user: ${user} unsuccesful`, err));
 };
-
-export const currentUser = users => dispatch => {
-  console.log('current user has been hit')
-  return axios.post('/login', users)
-    .then(res => dispatch(setUser(res.data)))
-    .catch(err => console.error(err));
-}
